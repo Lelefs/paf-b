@@ -1,11 +1,19 @@
 const UserService = require('../services/UserService');
 
 module.exports = {
-  async index(req, res) {
-    const { _id } = req.params;
-
+  async destroy(req, res) {
     try {
-      const { user } = await UserService.getOne({ _id });
+      const response = await UserService.deleteOne(req.params);
+
+      return res.json({ message: response });
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  },
+
+  async index(req, res) {
+    try {
+      const { user } = await UserService.getOne(req.params);
 
       return res.json(user);
     } catch (err) {
@@ -28,6 +36,19 @@ module.exports = {
       const { user } = await UserService.create(req.body);
 
       return res.json(user);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  },
+
+  async update(req, res) {
+    const { _id } = req.params;
+    const { name } = req.body;
+
+    try {
+      const response = await UserService.edit({ _id, name });
+
+      return res.json({ message: response });
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
