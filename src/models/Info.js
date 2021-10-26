@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const DashboardSchema = new Schema(
+const InfoSchema = new Schema(
   {
     date: {
       type: Date,
@@ -19,4 +19,4 @@ const DashboardSchema = new Schema(
   },
 );
 
-module.exports = model('Dashboard', DashboardSchema);
+module.exports = model('Info', InfoSchema);
