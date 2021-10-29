@@ -27,7 +27,7 @@ const edit = async ({ _id, name }) => {
 };
 
 const getAll = async () => {
-  const users = await User.find();
+  const users = await User.find().sort({ name: 1 });
 
   return { users };
 };

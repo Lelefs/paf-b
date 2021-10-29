@@ -46,13 +46,13 @@ const edit = async ({ _id, date, height, user, weight }) => {
 };
 
 const getAll = async () => {
-  const infos = await Info.find().populate('user');
+  const infos = await Info.find().populate('user').sort({ date: -1 });
 
   return { infos };
 };
 
 const getAllByUser = async ({ user }) => {
-  const infos = await Info.find({ user });
+  const infos = await Info.find({ user }).sort({ date: -1 });
 
   return { infos };
 };
